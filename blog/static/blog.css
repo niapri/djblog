@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+h1, a {
+	color: #FCA205;
+	font-family: "Lobster";
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+.page-header {
+	margin-top: 0;
+	padding: 20px 20px 20px 40px;
+}
+
+.post {
+	font-family: Roboto;
+	margin-bottom: 70px;
+}
+
+.post h1 a {
+	color: #000000;
+}

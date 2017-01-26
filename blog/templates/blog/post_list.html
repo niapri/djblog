@@ -1,15 +1,17 @@
+{% load staticfiles %}
 <html>
 	<head>
+		<link rel="stylesheet" href="{% static 'blog.css' %}">
 		<title>Brandy's blog</title>
 	</head>
 	<body>
-		<div>
+		<div class="page-header">
 		<h1><a href="">Brandy's blog</a></h1>
 		</div>
 
 			{% for post in posts %}
-				<div>
-					<h1><a href="">{{ post.title }}</a></h1>
+				<div class="post">
+					<h2><a href="">{{ post.title }}</a></h1>
 					<p>Published: {{ post.published_date}}</p>
 					<p>{{ post.text|linebreaksbr }}</p>
 				</div>
