@@ -1,22 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Alegreya');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 
 h1, a {
 	color: #FFFFFF;
-	font-family: "Lobster", cursive;
-	font-weight: normal;
+	font-family: "Alegreya";
+	font-style: bold;
 	text-decoration: none;
 }
 
-a:hover{
-	text-decoration: underline;
-}
-
 .page-header {
-	background-color: #FF9400;
+	background-color: #002a6d;
 	margin-top: 0;
-	padding: 20px 20px 20px 40px;
+	padding: 20px 20px 20px 50px;
 
 }
 
@@ -27,7 +23,6 @@ a:hover{
 .post {
 	font-family: "Roboto";
 	margin-bottom: 70px;
-	padding:;
 }
 
 .post h2 a {
