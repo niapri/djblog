@@ -8,11 +8,11 @@
 	</head>
 	<body>
 		<div class="page-header">
-		<h1>Brandy's coding blog of amazing awesomeness!</h1>
+		<h1>Brandy's coding blog of amazing awesomeness!<a href="{% url 'post_new' %}"><i class="fa fa-plus fa-lg"></i></a></h1>
 			<ul>
 				<li class="page-header"><a href="{% url 'post_list' %}">Home</a></li>
-				<li class="page-header"><a href="">Projects</a></li>
-				<li class="page-header"><a href="">Contact Me</a></li>
+				<li class="page-header"><a href="{% url 'projects' %}">Projects</a></li>
+				<li class="page-header"><a href="{% url 'contact' %}">Contact Me</a></li>
 			</ul>
 		</div>
 			<div class="content">

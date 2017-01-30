@@ -8,6 +8,15 @@
 	text-decoration: none;
 }
 
+h1 {
+	font-family: "Lobster";
+	color: #FF9400;
+}
+
+h1 a {
+	color: #FFFFFF;
+}
+
 button {
 	font-family: "Roboto";
 	font-size: 12px;
@@ -54,7 +63,8 @@ li a:hover {
 
 .post h2, .post a {
 	font-family: "Lobster";
-	color: #FF9400;
+	color: #000000;
+	text-decoration: none;
 }
 
 .pub-date {
