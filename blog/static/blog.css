@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-
 h1, a {
 	color: #FFFFFF;
 	font-family: "Lobster";
 	font-style: bold;
 	text-decoration: none;
+}
+
+button {
+	font-family: "Roboto";
+	font-size: 12px;
+	padding: 10px 10px;
 }
 
 .page-header {
@@ -23,12 +28,14 @@ h1, a {
 }
 
 .post h2 a {
+	font-family: "Lobster";
 	color: #FF9400;
 }
 
 .pub-date {
 	font-style: "Roboto";
 	font-size: .75em;
+	color: #828282;
 }
 
 input {
