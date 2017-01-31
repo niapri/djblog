@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name="post_edit"),
 	url(r'^projects/$', views.projects, name='projects'),
 	url(r'^contact/$', views.contact, name='contact'),
+	url(r'', include('soa.urls')),
 ]

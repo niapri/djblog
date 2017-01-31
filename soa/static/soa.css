@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.page-header h1 {
+	color: #FFFFFF;
+	font-family: "Lobster";
+	font-style: bold;
+	text-decoration: none;
+}
+
+h1 {
+	font-family: "Lobster";
+	color: #FF9400;
+}
+
+h1 a {
+	color: #FFFFFF;
+}
+
+button {
+	font-family: "Roboto";
+	font-size: 12px;
+	padding: 10px 10px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	background-color: #FF9400; 
+	font-family: "Roboto";
+}
+
+ul li {
+	float: left;
+}
+
+li a {
+	text-align: center;
+	text-decoration: none;
+	padding: 20px 20px 20px 20px;
+	color: #FFFFFF;
+}
+
+li a:hover {
+	background-color: #FFB54D;
+	transition: 0.2s;
+}
+
+.page-header {
+	background-color: #FF9400;
+	margin-top: 0;
+	padding: 20px 20px 20px 50px;
+
+}
+
+.content {
+	font-family: "Roboto";
+	margin-left: 40px;
+	margin-bottom: 70px;
+}
+
+.post h2, .post a {
+	font-family: "Lobster";
+	color: #000000;
+	text-decoration: none;
+}
+
+.pub-date {
+	font-style: "Roboto";
+	font-size: .75em;
+	color: #828282;
+}
+
+input {
+	width: 500px;
+	border: solid 1px #000000;
+	padding: 5px 5px 5px 5px;
+}
+
+textarea {
+	width: 500px;
+	height: 500px;
+	border: solid 1px #000000;
+	padding: 5px 5px 5px 5px;
+}
