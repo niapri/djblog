@@ -7,12 +7,23 @@ class Order(models.Model):
 	# Automatically generated fields.
 	order_id = models.UUIDField(default=uuid.uuid4, editable=False)
 	order_date = models.DateTimeField(default=timezone.now)
-	due_date = models.DateTimeField(default=None)
+	due_date = models.DateTimeField(default=timezone.now)
 	completed = models.CharField(max_length=25, default='n')
 
-	# User-input fields that are used to prepare and deliver the order.
+	#Order type - selected by user.
+	ORDER_TYPE_CHOICES = (
+		('REFI', 'refinance'),
+		('SALE', 'sale'),
+		)
+	order_type = models.CharField(
+		max_length=4,
+		choices=ORDER_TYPE_CHOICES,
+		default='SALE',
+		)
+
+	# Additional user-input fields that are used to prepare and deliver the order.
 	address = models.CharField(max_length=100)
-	zip_code = models.IntegerField(default=None)
+	zip_code = models.IntegerField()
 	cad_num = models.CharField(max_length=100)
 	county = models.CharField(max_length=100)
 	email = models.EmailField(max_length=254)
