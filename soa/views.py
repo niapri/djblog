@@ -10,10 +10,14 @@ def order_new(request):
 		form = OrderForm(request.POST)
 		if form.is_valid():
 			order = form.save()
+			request.session['oid'] = str(order.order_id)
 			return HttpResponseRedirect('order_confirmation')
 	else:
 		form = OrderForm()
 	return render(request, 'soa/order_new.html', {'form':form})
 
 def order_confirmation(request):
-	return render(request, 'soa/order_confirmation.html', {})
+	if request.session.has_key('oid'):
+		oid = request.session.get('oid')
+		del request.session['oid']
+	return render(request, 'soa/order_confirmation.html', {'oid':oid})

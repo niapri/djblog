@@ -18,4 +18,5 @@ class OrderForm(forms.ModelForm):
 			'phone', 
 			'fax', 
 			'current_owner',
+			'buyer',
 			)
