@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, ContactForm
 
 # Create your views here.
 def post_list(request):
@@ -43,4 +43,17 @@ def projects(request):
 	return render(request, 'blog/projects.html', {})
 
 def contact(request):
-	return render(request, 'blog/contact.html', {})
+	if request.method == "POST":
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			lead = form.save(commit=False)
+			lead.contact_date = timezone.now()
+			lead.save()
+			return redirect('thankyou')
+	else:
+		form = ContactForm()
+	return render(request, 'blog/contact.html', {'form':form})
+
+def thankyou(request):
+	return render(request, 'blog/thankyou.html', {})
+

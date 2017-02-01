@@ -8,5 +8,6 @@ urlpatterns = [
 	url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name="post_edit"),
 	url(r'^projects/$', views.projects, name='projects'),
 	url(r'^contact/$', views.contact, name='contact'),
+	url(r'^contact/thankyou/$', views.thankyou, name='thankyou'),
 	url(r'', include('soa.urls')),
 ]

@@ -15,3 +15,12 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class Lead(models.Model):
+	name = models.CharField(max_length=200)
+	email = models.EmailField(max_length=254)
+	message = models.TextField()
+	contact_date = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.name + ": " + self.email

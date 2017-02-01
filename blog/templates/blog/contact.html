@@ -6,6 +6,9 @@
 
 	<p>Like what you see? Have questions? Provide your contact info below, and I'll reach out to you!</p>
 
-	<p>There's nothing here yet! Come back later to see what's cooking.</p>
+	<form method="POST" class="cform">{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="save btn btn-default">Submit</button>
+	</form>
 
 {% endblock %}
