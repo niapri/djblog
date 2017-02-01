@@ -5,6 +5,9 @@ from .models import Order
 from .forms import OrderForm
 
 # Create your views here.
+def soahome(request):
+	return render(request, 'soa/soahome.html', {})
+
 def order_new(request):
 	if request.method == "POST":
 		form = OrderForm(request.POST)
@@ -21,3 +24,7 @@ def order_confirmation(request):
 		oid = request.session.get('oid')
 		del request.session['oid']
 	return render(request, 'soa/order_confirmation.html', {'oid':oid})
+
+def check_order(request):
+	return render(request, 'soa/check_order.html', {})
+	

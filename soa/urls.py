@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
+	url(r'^soahome/$', views.soahome, name='soahome'),
+	url(r'^check_order/$', views.check_order, name='check_order'),
 	url(r'^order_new/$', views.order_new, name='order_new'),
 	url(r'^order_new/order_confirmation/$', views.order_confirmation, name='order_confirmation'), 
 ]
