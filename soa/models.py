@@ -25,11 +25,11 @@ class Order(models.Model):
 
 	#Order type - selected by user.
 	ORDER_TYPE_CHOICES = (
-		('REFI', 'Refinance'),
-		('SALE', 'Sale'),
+		('Refi', 'Refinance'),
+		('Sale', 'Sale'),
 		)
 	order_type = models.CharField(
-		max_length=4,
+		max_length=8,
 		choices=ORDER_TYPE_CHOICES,
 		default='SALE',
 		)

@@ -7,13 +7,24 @@
 	{% for order in orders %}
 
 		<div>
+
 			<dl class='order-info'>
 				<dt><b>{{ order.address }}</b></dt>
 				<dd>Order Date: {{ order.order_date }}</dd>
 				<dd>Due Date: {{ order.due_date }}</dd>
 				<dd>Email: {{ order.email }}</dd>
 				<dd>Order ID: {{ order.order_id }}</dd>
+				<dd>Order Type: {{ order.order_type }}</dd>
+				<dd>Completed? {{ order.completed }}</dd>
 			</dl>
+
+			{% if order.completed == 'Complete' %}
+				<button>Mark Delivered</button>
+
+			{% else %}
+				<button>Mark Completed</button>
+
+			{% endif %}
 		</div>
 	{% endfor %}
 

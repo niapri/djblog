@@ -35,5 +35,5 @@ def check_order(request):
 	return render(request, 'soa/check_order.html', {'results':results})
 
 def delivery_queue(request):
-	orders = Order.objects.filter(completed='n').order_by('due_date')
+	orders = Order.objects.exclude(completed="Delivered").order_by('due_date')
 	return render(request, 'soa/delivery_queue.html', {'orders':orders})
