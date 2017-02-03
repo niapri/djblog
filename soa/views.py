@@ -37,3 +37,7 @@ def check_order(request):
 def delivery_queue(request):
 	orders = Order.objects.exclude(completed="Delivered").order_by('due_date')
 	return render(request, 'soa/delivery_queue.html', {'orders':orders})
+
+def order_detail(request, slug):
+	order = get_object_or_404(Order, slug=slug)
+	return render(request, 'soa/order_detail.html', {'order':order})

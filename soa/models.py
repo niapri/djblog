@@ -34,6 +34,8 @@ class Order(models.Model):
 		default='SALE',
 		)
 
+	slug = models.SlugField(max_length=100, default='temp')
+
 	# Additional user-input fields that are used to prepare and deliver the order.
 	address = models.CharField(max_length=100)
 	zip_code = models.IntegerField()
@@ -78,8 +80,12 @@ class Order(models.Model):
 
 	def set_due_date(self):
 		odate = date.today()
-
 		self.due_date = date.today()
+
+#	def set_slug():
+#		oid = str(self.order_id)
+#		self.slug = oid
+
 
 	def __str__(self):
 		return str(self.order_id)
