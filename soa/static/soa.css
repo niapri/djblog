@@ -8,6 +8,11 @@
 	text-decoration: none;
 }
 
+ul.order-info {
+	background-color: #FFFFFF;
+
+}
+
 h1 {
 	font-family: "Lobster";
 	color: #FF9400;
@@ -51,6 +56,10 @@ li a {
 li a:hover {
 	background-color: #FFB54D;
 	transition: 0.2s;
+}
+
+dl {
+
 }
 
 .page-header {

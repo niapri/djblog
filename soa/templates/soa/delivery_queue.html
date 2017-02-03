@@ -1,0 +1,20 @@
+{% extends 'soa/base.html' %}
+
+{% block content %}
+
+	<h1>Statement of Account: Current Orders</h1>
+
+	{% for order in orders %}
+
+		<div>
+			<dl class='order-info'>
+				<dt><b>{{ order.address }}</b></dt>
+				<dd>Order Date: {{ order.order_date }}</dd>
+				<dd>Due Date: {{ order.due_date }}</dd>
+				<dd>Email: {{ order.email }}</dd>
+				<dd>Order ID: {{ order.order_id }}</dd>
+			</dl>
+		</div>
+	{% endfor %}
+
+{% endblock %}

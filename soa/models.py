@@ -1,4 +1,5 @@
 import uuid
+from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
 import random, string
@@ -7,10 +8,20 @@ import random, string
 class Order(models.Model):
 	# Automatically generated fields.
 	order_id = models.CharField(default=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for a in range(0,7)), 
-		editable=False, max_length=10)
-	order_date = models.DateTimeField(default=timezone.now)
-	due_date = models.DateTimeField(default=timezone.now)
-	completed = models.CharField(max_length=25, default='n')
+		editable=False, 
+		max_length=10)
+	order_date = models.DateTimeField(default=timezone.now, editable=False)
+	due_date = models.DateField(default=date.today)
+
+	COMPLETION_CHOICES = (
+		('Not Complete', 'Not Complete'),
+		('Complete', 'Complete'),
+		('Delivered', 'Delivered'),
+		)
+
+	completed = models.CharField(max_length=25, 
+		choices=COMPLETION_CHOICES,
+		default='Not Complete')
 
 	#Order type - selected by user.
 	ORDER_TYPE_CHOICES = (
@@ -36,6 +47,39 @@ class Order(models.Model):
 	fax = models.CharField(max_length=20, blank=True)
 	current_owner = models.CharField(max_length=100)
 	buyer = models.CharField(max_length=100, blank=True)
+
+	#In-house info used for metrics, etc.
+	DIVISION_CHOICES = (
+		('SATX', 'San Antonio'),
+		('ATX', 'Austin'), 
+		('HTX', 'Houston'), 
+		('DTX', 'Dallas'), 
+		('MTX', 'Midland'), 
+		('LTX', 'Laredo'),
+		('CCTX', 'Corpus Christi'),
+		)
+	division = models.CharField(max_length=4, 
+		choices=DIVISION_CHOICES, 
+		default='NONE')
+
+	CLOSING_TEAM = (
+		('JBLE', 'Jamie Bledsoe'), 
+		('BWI', 'Brandy Wills'),
+		('BBA', 'Brittany Backman'), 
+		('MFO', 'Micaela Fouda'),
+		('EGL', 'Elisha Glover'),
+		('NWA', 'Natasha Wawr?'),
+		)
+
+	completed_by = models.CharField(max_length=4,
+		choices=CLOSING_TEAM,
+		default='ANON')
+
+
+	def set_due_date(self):
+		odate = date.today()
+
+		self.due_date = date.today()
 
 	def __str__(self):
 		return str(self.order_id)

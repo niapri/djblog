@@ -2,7 +2,27 @@
 
 {% block content %}
 
-<p>Pay no attention to the man behind the curtain!</p>
-<p>(Translation: There's nothing here yet - but there will be!)</p>
+<p>Enter your order ID below to check the status of your order:</p>
+<form type="get" action="." style="margin: 0">
+	<input id="search_box" type="text" name="search_box" placeholder="Order ID">
+	<button id="search_submit" type="submit">Search</button>
+</form>
+
+{% for result in results %}
+
+<p>**If any of this information is incorrect, please email us so that we can make corrections to your order. If this order was sent to an incorrect email address, please. It is your responsibility to make sure that all the information is incorrect - if corrections are not submitted prior to the delivery date, you will have to order an update to receive a corrected statement of account.**</p>
+
+	<dl>
+		<dt><b>Order {{ result.order_id}}</b></dt>
+		<dl>Property Address: {{ result.address}}</dl>
+		<dl>Email Address: {{ result.email }}</dl>
+		<dl>Status: {{ result.completed }}</dl>
+		<dl>Delivery Date: {{ result.due_date }}</dl>
+	</dl>
+
+	{% empty %}
+		<p>No results found. </p>
+
+{% endfor %}
 
 {% endblock %}
