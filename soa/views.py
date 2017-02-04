@@ -1,9 +1,9 @@
 from datetime import date
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from .models import Order
-from .forms import OrderForm
+from .forms import OrderForm, OrderDetailForm
 
 # Create your views here.
 def soahome(request):
@@ -15,6 +15,8 @@ def order_new(request):
 		if form.is_valid():
 			order = form.save()
 			order.set_due_date()
+			slug = str(order.order_id)
+			order.slug = slug
 			order.save()
 			request.session['oid'] = str(order.order_id)
 			return HttpResponseRedirect('order_confirmation')
@@ -40,4 +42,11 @@ def delivery_queue(request):
 
 def order_detail(request, slug):
 	order = get_object_or_404(Order, slug=slug)
-	return render(request, 'soa/order_detail.html', {'order':order})
+	if request.method == "POST":
+		form = OrderDetailForm(request.POST, instance=order)
+		if form.is_valid():
+			order = form.save()
+			return redirect('order_detail', slug=slug)
+	else:
+		form = OrderDetailForm(instance=order)
+	return render(request, 'soa/order_detail.html', {'form':form})

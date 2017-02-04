@@ -6,6 +6,10 @@
 
 <p>You successfully got the order detail page for <b>order {{ order.order_id }}</b>, for the property address:{{ order.address }}! </p>
 
-<p>Obviously there will be more that's going here. ;)</p>
+<form method="POST" class="order-form">{% csrf_token %}
+{{ form.as_p}}
+<button type='submit' class="save btn btn-default">Save</button>
+</form>
+
 
 {% endblock %}
