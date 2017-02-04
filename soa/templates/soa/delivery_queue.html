@@ -12,6 +12,7 @@
 
 			<dl class='order-info'>
 				<dt><b><a href="{% url 'order_detail' slug=order.slug %}">{{ order.order_id }}</a></b></dt>
+				<dd>Property Address: <b>{{ order.address }}</b></dd>
 				<dd>Order Date: {{ order.order_date }}</dd>
 				<dd>Due Date: {{ order.due_date }}</dd>
 				<dd>Email: {{ order.email }}</dd>

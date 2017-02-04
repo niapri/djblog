@@ -50,3 +50,7 @@ def order_detail(request, slug):
 	else:
 		form = OrderDetailForm(instance=order)
 	return render(request, 'soa/order_detail.html', {'form':form})
+
+def order_archive(request):
+	orders = Order.objects.filter(completed="Delivered").order_by('due_date')
+	return render(request, 'soa/order_archive.html', {'orders':orders})

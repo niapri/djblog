@@ -1,0 +1,16 @@
+{% extends 'soa/base.html' %}
+
+{% block content %}
+
+<h1>Statement of Account: Order Archive</h1>
+
+{% for order in orders %}
+
+<div class='order-info'>
+	<dl class='order-info'>
+		<dt><a href="{% url 'order_detail' slug=order.slug %}">Order ID: {{ order.order_id }}</a></dt>
+	</dl>
+</div>
+{% endfor %}
+
+{% endblock %}
