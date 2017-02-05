@@ -2,6 +2,7 @@ import uuid
 from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
+from django.core.validators import RegexValidator
 import random, string
 
 # Create your models here.
@@ -37,7 +38,13 @@ class Order(models.Model):
 	slug = models.SlugField(max_length=100, default='temp')
 
 	# Additional user-input fields that are used to prepare and deliver the order.
-	address = models.CharField(max_length=100)
+	address = models.CharField(max_length=100,
+		validators=[
+			RegexValidator(
+				regex='^(\d+) (\w?.?\s?\d+?.?\w+ ?\w+)$',
+				message='This does not appear to be a valid address.',
+				),
+			],)
 	zip_code = models.IntegerField()
 	cad_num = models.CharField(max_length=100, blank=True)
 	county = models.CharField(max_length=100, blank=True)
@@ -65,6 +72,7 @@ class Order(models.Model):
 		default='NONE')
 
 	CLOSING_TEAM = (
+		('ANON', 'No Employee Linked'),
 		('JBLE', 'Jamie Bledsoe'), 
 		('BWI', 'Brandy Wills'),
 		('BBA', 'Brittany Backman'), 
@@ -81,11 +89,6 @@ class Order(models.Model):
 	def set_due_date(self):
 		odate = date.today()
 		self.due_date = date.today()
-
-#	def set_slug():
-#		oid = str(self.order_id)
-#		self.slug = oid
-
 
 	def __str__(self):
 		return str(self.order_id)
