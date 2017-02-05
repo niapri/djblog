@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+p {
+	color: #4F4F4F;
+}
+
+dl {
+	color: #4F4F4F;
+}
+
 .page-header h1 {
 	color: #FFFFFF;
 	font-family: "Lobster";
@@ -11,11 +19,6 @@
 ul.order-info {
 	background-color: #FFFFFF;
 
-}
-
-p.total {
-	font-style: bold;
-	text-align: right;
 }
 
 h1 {
