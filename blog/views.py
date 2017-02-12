@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm, ContactForm
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+from django.core.mail import send_mail
 
 # Create your views here.
 def post_list(request):
@@ -49,6 +52,18 @@ def contact(request):
 			lead = form.save(commit=False)
 			lead.contact_date = timezone.now()
 			lead.save()
+			# Email site admin with contact form content
+			send_mail(
+			'New contact form submission',
+			'''
+			Name: %s
+			Email Address: %s
+			Message: %s
+			'''%(lead.name, lead.email, lead.message),
+			lead.email,
+			['wills.brandy@gmail.com'],
+			fail_silently=False
+			 )
 			return redirect('thankyou')
 	else:
 		form = ContactForm()
@@ -56,4 +71,20 @@ def contact(request):
 
 def thankyou(request):
 	return render(request, 'blog/thankyou.html', {})
+
+def pdftest(request):
+	# Create the HttpResponse object with the appropriate PDF headers
+	response = HttpResponse(content_type='application/pdf')
+	response['Content-Disposition'] = 'attachment; filename="test.pdf"'
+	# Create the PDF object, using the response object as its 'file'.
+	p = canvas.Canvas(response)
+	#Draw things on the PDF. Here's where PDF generation happens. 
+	p.drawString(100,100, 'Hello World.')
+	p.showPage()
+	p.save()
+	return response
+
+
+
+
 

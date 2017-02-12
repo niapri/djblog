@@ -1,0 +1,25 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_01.pdf">
+
+<template>
+	<pageTemplate id='main'>
+		<frame id='first' x1='100' y1='400' width='150' height='200'/>
+	</pageTemplate>
+</template>
+<stylesheet>
+
+</stylesheet>
+<story>
+	<para>
+		Welcome to RML!
+	</para>
+	<para>
+		This is the "story". This is the part of the rML document where your text is placed.
+	</para>
+	<para>
+		It should be enclosed in "para" and "/para" tags to turn it into paragraphs.
+	</para>
+
+</story>
+
+</document>

@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
 from django.core.validators import RegexValidator
+from django.core.exceptions import MultipleObjectsReturned
 import random, string
 
 # Create your models here.
@@ -16,18 +17,18 @@ class Order(models.Model):
 
 	COMPLETION_CHOICES = (
 		('Not Complete', 'Not Complete'),
-		('Complete', 'Complete'),
+		('Complete - Delivery Pending', 'Complete - Delivery Pending'),
 		('Delivered', 'Delivered'),
 		)
 
-	completed = models.CharField(max_length=25, 
+	completed = models.CharField(max_length=50, 
 		choices=COMPLETION_CHOICES,
 		default='Not Complete')
 
 	#Order type - selected by user.
 	ORDER_TYPE_CHOICES = (
-		('Refi', 'Refinance'),
 		('Sale', 'Sale'),
+		('Refi', 'Refinance'),
 		)
 	order_type = models.CharField(
 		max_length=8,
@@ -35,14 +36,28 @@ class Order(models.Model):
 		default='SALE',
 		)
 
+	RUSH_OPTIONS = (
+		('REG', '8 business days'),
+		('2BD', '2 business day rush'),
+		)
+
+	rush_status = models.CharField(
+		max_length=3,
+		choices=RUSH_OPTIONS,
+		default='REG'
+		)
+
 	slug = models.SlugField(max_length=100, default='temp')
 
 	# Additional user-input fields that are used to prepare and deliver the order.
-	address = models.CharField(max_length=100,
+	address = models.CharField(max_length=100, blank=True,
 		validators=[
 			RegexValidator(
-				regex='^(\d+) (\w?.?\s?\d+?.?\w+ ?\w+)$',
-				message='This does not appear to be a valid address.',
+				regex="^(\d+\s(\w+.? ?\d+\w+)?\w+[']?\s?\w+.?)$",
+				message='''This does not appear to be a valid address. 
+				To submit your order we must be provided with a complete street address. 
+				If an address is not available, then please provide only the street name 
+				and the legal description in the CAD Number field, and leave the address blank.''',
 				),
 			],)
 	zip_code = models.IntegerField()
@@ -89,6 +104,26 @@ class Order(models.Model):
 	def set_due_date(self):
 		odate = date.today()
 		self.due_date = date.today()
+		if self.rush_status == 'REG':
+			business_days = 8
+		elif self.rush_status == '2BD':
+			business_days = 2
+		if self.order_date.weekday() >=5:
+			self.due_date += timedelta(days=1)
+		while business_days > 0:
+			self.due_date += timedelta(days=1)
+			weekday = self.due_date.weekday()
+			if weekday >=5:
+				self.due_date += timedelta(days=1)
+			business_days -=1
+
+	def check_id_conflict(self):
+		try:
+			Order.objects.get(order_id=self.order_id)
+		except MultipleObjectsReturned:
+			self.order_id = (''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for a in range(0,7)))
+			self.save()	
+
 
 	def __str__(self):
 		return str(self.order_id)

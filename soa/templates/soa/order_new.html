@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>Instructions: </h2>
-<p>Please fill out the form below to place your order. (Fill out as much as you can - not all fields are required.</p>
+<p>Please fill out the form below to place your order. (Required fields are noted; all others are optional.)</p>
 
 <form method="POST" class="pform">{% csrf_token %}
 	{{ form.as_p }}

@@ -20,6 +20,16 @@ class OrderForm(forms.ModelForm):
 			'current_owner',
 			'buyer',
 			)
+		labels = {
+			'address':'Address (required)',
+			'zip_code':'Zip code (required)',
+			'cad_num':'CAD number:',
+			'email':'Email (required)',
+			'gf_number':'GF number',
+			'title_co':'Title Company',
+			'preparer':'Submitted by (required)',
+			'current_owner':'Current owner (required)',
+			}
 
 class OrderDetailForm(forms.ModelForm):
 

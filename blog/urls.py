@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^projects/$', views.projects, name='projects'),
 	url(r'^contact/$', views.contact, name='contact'),
 	url(r'^contact/thankyou/$', views.thankyou, name='thankyou'),
+	url(r'^pdftest/$', views.pdftest, name='pdftest'),
 	url(r'', include('soa.urls')),
 ]
