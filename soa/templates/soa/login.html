@@ -1,0 +1,15 @@
+{% extends 'soa/base.html' %}
+
+{% block content %}
+
+<h2>Login</h2>
+
+<p>(To view employee options, please use 'demo' as username and password, then click 'Login' below.)</p>
+
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p}}
+	<button type="submit">Login</button>
+</form>
+
+{% endblock %}
