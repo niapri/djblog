@@ -32,7 +32,7 @@ def order_confirmation(request):
 		del request.session['oid']
 	order = Order.objects.get(order_id = oid)
 	send_mail(
-		'Confirmation: Statement of Account',
+		'Order Confirmation %s: Statement of Account'%oid,
 		'Thank you for placing an order for a Statement of Account. Your order ID is %s' %oid,
 		'niapri@gmail.com',
 		[order.email],
@@ -59,7 +59,7 @@ def order_detail(request, slug):
 			return redirect('order_detail', slug=slug)
 	else:
 		form = OrderDetailForm(instance=order)
-	return render(request, 'soa/order_detail.html', {'form':form})
+	return render(request, 'soa/order_detail.html', {'form':form, 'order':order})
 
 def order_archive(request):
 	orders = Order.objects.filter(completed="Delivered").order_by('due_date')

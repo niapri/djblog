@@ -117,6 +117,10 @@ class Order(models.Model):
 				self.due_date += timedelta(days=1)
 			business_days -=1
 
+	def chngProcessing(self):
+		None
+
+
 	def check_id_conflict(self):
 		try:
 			Order.objects.get(order_id=self.order_id)

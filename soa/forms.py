@@ -7,6 +7,7 @@ class OrderForm(forms.ModelForm):
 		model = Order
 		fields = (
 			'order_type', 
+			'rush_status',
 			'address', 
 			'zip_code', 
 			'cad_num', 
@@ -38,7 +39,7 @@ class OrderDetailForm(forms.ModelForm):
 		fields = (
 			'completed',
 			'completed_by',
-			'order_type', 
+			'order_type',
 			'address', 
 			'zip_code', 
 			'cad_num', 
