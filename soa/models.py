@@ -1,9 +1,9 @@
-import uuid
+import uuid, re
 from datetime import date, timedelta
 from django.db import models
 from django.utils import timezone
 from django.core.validators import RegexValidator
-from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned, ValidationError
 import random, string
 
 # Create your models here.
@@ -60,7 +60,15 @@ class Order(models.Model):
 				and the legal description in the CAD Number field, and leave the address blank.''',
 				),
 			],)
-	zip_code = models.IntegerField()
+	zip_code = models.CharField(max_length=15,
+		validators=[
+			RegexValidator(
+				regex="^8\d+$",
+				inverse_match=True,
+				message="""This property address appears to be located in Arizona.
+				This form cannot be used to place an order for Arizona properties, because 
+				Arizona has different legal requirements for a sale. Please correct the property address and zip code, or place your order 
+				by sending an email to RESALES@SPECTRUMAM.COM.""")])
 	cad_num = models.CharField(max_length=100, blank=True)
 	county = models.CharField(max_length=100, blank=True)
 	email = models.EmailField(max_length=254)
