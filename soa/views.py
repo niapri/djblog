@@ -31,13 +31,6 @@ def order_confirmation(request):
 		oid = request.session.get('oid')
 		del request.session['oid']
 	order = Order.objects.get(order_id = oid)
-	send_mail(
-		'Order Confirmation %s: Statement of Account'%oid,
-		'Thank you for placing an order for a Statement of Account. Your order ID is %s' %oid,
-		'niapri@gmail.com',
-		[order.email],
-		fail_silently=False,
-		)
 	return render(request, 'soa/order_confirmation.html', {'oid':oid})
 
 def check_order(request):
