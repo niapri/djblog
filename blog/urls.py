@@ -11,4 +11,6 @@ urlpatterns = [
 	url(r'^contact/thankyou/$', views.thankyou, name='thankyou'),
 	url(r'^pdftest/$', views.pdftest, name='pdftest'),
 	url(r'', include('soa.urls')),
+	url(r'', include('resales.urls')),
+	url(r'', include('taskmanager.urls')),
 ]

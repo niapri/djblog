@@ -68,7 +68,7 @@ class Order(models.Model):
 				message="""This property address appears to be located in Arizona.
 				This form cannot be used to place an order for Arizona properties, because 
 				Arizona has different legal requirements for a sale. Please correct the property address and zip code, or place your order 
-				by sending an email to RESALES@SPECTRUMAM.COM.""")])
+				by sending an written request to RESALES@SPECTRUMAM.COM.""")])
 	cad_num = models.CharField(max_length=100, blank=True)
 	county = models.CharField(max_length=100, blank=True)
 	email = models.EmailField(max_length=254)

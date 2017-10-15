@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<link rel="stylesheet" href="{% static 'soa.css' %}">
+		<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+		<title>Statement of Account</title>
+	</head>
+	<body>
+		<div class="page-header">
+			<h1>Statement of Account</h1>
+			<ul>
+				<li class="page-header"><a href="{% url 'post_list' %}">Back to Main Site</a></li>
+				<li class="page-header"><a href="{% url 'soahome' %}">What is a Statement of Account?</a></li>
+				<li class="page-header"><a href="{% url 'order_new' %}">Place an Order</a></li>
+				<li class="page-header"><a href="{% url 'check_order' %}">Check Order Status</a></li>
+				{% if user.is_authenticated %}
+				<li class="page-header"><a href="{% url 'delivery_queue' %}">Employee Order Queue</a></li>
+				<li class="page-header"><a href ="{% url 'order_archive' %}">Order Archive</a></li>
+				<li class="page-header"><a href="{% url 'logout' %}">Logout</a></li>
+				{% elif user.is_anonymous %}
+				<li class="page-header"><a href="{% url 'login' %}">Employee Login</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
