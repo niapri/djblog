@@ -16,14 +16,15 @@ class Order(models.Model):
 	due_date = models.DateField(default=date.today)
 
 	COMPLETION_CHOICES = (
-		('Not Complete', 'Not Complete'),
+		('Order Received', 'Order Received'),
+		('In Progress', 'In Progress'),
 		('Complete - Delivery Pending', 'Complete - Delivery Pending'),
 		('Delivered', 'Delivered'),
 		)
 
 	completed = models.CharField(max_length=50, 
 		choices=COMPLETION_CHOICES,
-		default='Not Complete')
+		default='Order Received')
 
 	#Order type - selected by user.
 	ORDER_TYPE_CHOICES = (
